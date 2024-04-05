@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".CatActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="399dp"
-        android:layout_height="467dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/download__1_" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/catRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/item_cat" />
 </androidx.constraintlayout.widget.ConstraintLayout>
