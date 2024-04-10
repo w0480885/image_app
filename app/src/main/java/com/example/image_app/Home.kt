@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.image_app.databinding.FragmentHomeBinding
+import com.example.image_app.DogActivity
+
 
 class Home : Fragment() {
 

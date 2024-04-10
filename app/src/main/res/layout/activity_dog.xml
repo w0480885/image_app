@@ -6,12 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".DogActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="408dp"
-        android:layout_height="563dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/download__5_" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dogRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/item_dog" />
 </androidx.constraintlayout.widget.ConstraintLayout>

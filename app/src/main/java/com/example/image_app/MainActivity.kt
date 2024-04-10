@@ -1,13 +1,9 @@
 package com.example.image_app
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.image_app.databinding.ActivityMainBinding
-import com.example.image_app.R
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             when(it.itemId){
 
                 R.id.home -> replaceFragment(Home())
-                R.id.profile -> replaceFragment(Profile())
+                R.id.profile -> replaceFragment(Liked())
                 R.id.settings -> replaceFragment(Settings())
 
                 else ->{

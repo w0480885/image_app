@@ -30,7 +30,10 @@ android {
     buildFeatures{
 
         viewBinding = true
+
     }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -61,5 +64,17 @@ dependencies {
     annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
     // RecyclerView
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
+
+    // Room for database
+    val room_version = "2.4.2"
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+    // Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2")
+    implementation ("androidx.cardview:cardview:1.0.0")
+
+
+
 
 }

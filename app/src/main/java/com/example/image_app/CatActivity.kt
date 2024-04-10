@@ -3,13 +3,16 @@ package com.example.image_app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.image_app.databinding.ActivityCatBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import androidx.recyclerview.widget.RecyclerView
+import retrofit2.http.GET
+import retrofit2.http.Query
+import androidx.recyclerview.widget.LinearLayoutManager
 
 
 
@@ -18,6 +21,8 @@ class CatActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCatBinding
     private val catImages = mutableListOf<CatImage>()
     private lateinit var catAdapter: CatAdapter
+    private var isLoading = false
+    private var page = 0 // Keep track of which page to load next
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,12 +33,9 @@ class CatActivity : AppCompatActivity() {
         fetchCatImages()
     }
 
-    private var isLoading = false
-    private var page = 0 // Keep track of which page to load next
-
     private fun setupRecyclerView() {
         catAdapter = CatAdapter(catImages)
-        val layoutManager = GridLayoutManager(this, 2)
+        val layoutManager = LinearLayoutManager(this) // Changed to LinearLayoutManager
         binding.catRecyclerView.layoutManager = layoutManager
         binding.catRecyclerView.adapter = catAdapter
 
@@ -53,7 +55,6 @@ class CatActivity : AppCompatActivity() {
         })
     }
 
-
     private fun fetchCatImages() {
         val catApiService = getRetrofit().create(CatApiService::class.java)
         catApiService.getCatImages(limit = 10, page = page).enqueue(object : Callback<List<CatImage>> {
@@ -70,13 +71,10 @@ class CatActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<CatImage>>, t: Throwable) {
-                // Handle failure
                 isLoading = false // Reset loading state
             }
         })
     }
-
-
 
     private fun getRetrofit(): Retrofit {
         return Retrofit.Builder()
@@ -84,4 +82,15 @@ class CatActivity : AppCompatActivity() {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    interface CatApiService {
+        @GET("v1/images/search")
+        fun getCatImages(@Query("limit") limit: Int, @Query("page") page: Int): Call<List<CatImage>>
+    }
 }
+
+
+
+
+
+

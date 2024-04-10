@@ -1,4 +1,6 @@
 package com.example.image_app
 
-class DogImage {
-}
+data class DogImage(
+    val message: List<String>,
+    val status: String
+)
