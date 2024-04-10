@@ -13,9 +13,6 @@ class CatAdapter(private val catImages: List<CatImage>) : RecyclerView.Adapter<C
             // Use Glide to load the image into the ImageView
             Glide.with(binding.catImageView.context)
                 .load(catImage.url)
-                // Optional: You might want to add a placeholder or error drawable
-                //.placeholder(R.drawable.image_placeholder)
-                //.error(R.drawable.image_load_error)
                 .into(binding.catImageView)
         }
     }
